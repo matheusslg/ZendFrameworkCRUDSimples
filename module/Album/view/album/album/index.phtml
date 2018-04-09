@@ -1,0 +1,28 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Meus álbuns';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <button onclick="location.href = '<?= $this->url('album', ['action' => 'add']) ?>';" class="btn btn-primary">Adicionar novo álbum</button>
+</p>
+
+<table class="table">
+<tr>
+    <th>Artista</th>
+    <th>Título</th>
+    <th>Opções</th>
+</tr>
+<?php foreach ($albums as $album) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($album->artist) ?></td>
+        <td><?= $this->escapeHtml($album->title) ?></td>
+        <td>
+            <button onclick="location.href = '<?= $this->url('album', ['action' => 'edit', 'id' => $album->id]) ?>';" class="btn btn-warning">Editar</button>
+            <button onclick="location.href = '<?= $this->url('album', ['action' => 'delete', 'id' => $album->id]) ?>';" class="btn btn-danger">Deletar</button>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
